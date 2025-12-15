@@ -1,0 +1,282 @@
+:root {
+    --yandex-primary: #FFDB4D;
+    --yandex-primary-hover: #FFD633;
+    --yandex-dark: #000;
+    --yandex-light: #fff;
+    --yandex-gray: #f2f2f2;
+    --yandex-border: #e6e6e6;
+    --yandex-text: #000;
+    --yandex-text-secondary: #7f8285;
+    --yandex-danger: #ff3333;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'YS Text', Arial, sans-serif;
+    color: var(--yandex-text);
+}
+
+#container {
+    display: flex;
+    height: 100vh;
+    background-color: var(--yandex-gray);
+    position: relative;
+}
+
+#map {
+    flex: 1;
+    height: 100%;
+    background-color: #eef;
+    transition: margin-left 0.3s ease;
+}
+
+#container.sidebar-collapsed #sidebar {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#container.sidebar-collapsed #map {
+    width: 100%;
+}
+
+#sidebar {
+    width: 350px;
+    padding: 20px;
+    background: #f5f5f5;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1000;
+    visibility: visible;
+}
+
+.sidebar-toggle {
+    position: absolute;
+    right: 15px;
+    left: 15px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    color: #000;
+    font-weight: bold;
+    background-color: var(--yandex-light-hover);
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: var(--yandex-light);
+}
+
+h1 {
+    font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: 0px;
+    color: var(--yandex-text);
+    font-weight: 700;
+    padding-bottom: 15px;
+}
+
+.row-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--yandex-text);
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--yandex-border);
+    border-radius: 4px;
+    font-family: 'YS Text', Arial, sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--yandex-primary);
+    box-shadow: 0 0 0 2px rgba(255, 219, 77, 0.3);
+}
+
+button {
+    background: var(--yandex-primary);
+    color: var(--yandex-dark);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 8px;
+    transition: background-color 0.2s;
+    font-family: 'YS Text', Arial, sans-serif;
+}
+
+button:hover {
+    background: var(--yandex-primary-hover);
+}
+
+button.reset {
+    background: var(--yandex-light);
+    color: var(--yandex-dark);
+    border: 1px solid var(--yandex-border);
+}
+
+button.reset:hover {
+    background: var(--yandex-gray);
+    border-color: var(--yandex-border);
+}
+
+.point-list {
+    margin-top: 25px;
+    border-top: 1px solid var(--yandex-border);
+    padding-top: 15px;
+}
+
+.point-item {
+    background: var(--yandex-light);
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--yandex-border);
+    position: relative;
+}
+
+.point-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.point-coords {
+    color: var(--yandex-text-secondary);
+    font-size: 12px;
+}
+
+.remove-point {
+    color: var(--yandex-danger);
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.search-container {
+    display: flex;
+    gap: 8px;
+}
+
+#addressSearch {
+    flex: 1;
+}
+
+#searchBtn {
+    margin: 0;
+    padding: 10px 16px;
+    white-space: nowrap;
+}
+
+/* Стили для карты */
+.leaflet-container {
+    font-family: 'YS Text', Arial, sans-serif;
+}
+
+.leaflet-popup-content {
+    font-size: 14px;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 4px;
+}
+
+.isochrone-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+}
+
+.loading-overlay.hidden {
+    display: none;
+}
+
+.loading-card {
+    background: var(--yandex-light);
+    border: 1px solid var(--yandex-border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-width: 260px;
+    max-width: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    text-align: center;
+}
+
+.spinner {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 4px solid rgba(0, 0, 0, 0.12);
+    border-top-color: var(--yandex-primary);
+    margin: 0 auto 12px auto;
+    animation: spin 0.9s linear infinite;
+}
+
+.loading-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.loading-subtitle {
+    font-size: 13px;
+    color: var(--yandex-text-secondary);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
