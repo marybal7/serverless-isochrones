@@ -121,6 +121,8 @@ function initEventHandlers() {
     // Обработчик поиска адреса
     document.getElementById('searchBtn').addEventListener('click', searchAddress);
 
+    document.getElementById('searchBtn2').addEventListener('click', searchLatLon);
+
     // Обработчики кнопок
     document.getElementById('buildBtn').addEventListener('click', buildIsochrones);
     document.getElementById('resetBtn').addEventListener('click', reset);
@@ -133,9 +135,30 @@ function initEventHandlers() {
     });
 }
 
+function searchLatLon() {
+    const latitude = document.getElementById('latlonSearch').value;
+    const longitude = document.getElementById('latlonSearch2').value;
+
+
+    if (latitude && longitude) {
+        addPoint(L.latLng(latitude, longitude));
+    }
+
+    if (!latitude) {
+        alert('Введите широту точки');
+        return;
+    }
+
+    if (!longitude) {
+        alert('Введите долготу точки');
+        return;
+    }
+}
+
 // Функция поиска адреса
 function searchAddress() {
     const address = document.getElementById('addressSearch').value.trim();
+
     if (!address) {
         alert('Введите адрес для поиска');
         return;
